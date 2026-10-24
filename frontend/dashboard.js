@@ -144,33 +144,65 @@
   }
 
   function renderIssue(issue, index) {
-    const item = typeof issue === "string"
-      ? { issue }
-      : (issue || {});
+  const item = typeof issue === "string"
+    ? { title: issue, description: issue }
+    : (issue || {});
 
-    return `
-      <article class="legal-issue">
-        <h3>Issue ${index + 1} — ${
-          esc(item.issue || "Issue requiring review")
-        }</h3>
+  const title =
+    item.title ||
+    item.issue ||
+    "Issue requiring review";
 
-        <section class="issue-detail">
-          <h4>Implied Acts and Sections</h4>
-          ${displayValue(item.implied_acts_sections)}
-        </section>
+  const legalContext =
+    item.legal_context ||
+    item.implied_acts_sections ||
+    item.relevant_laws;
 
-        <section class="issue-detail">
-          <h4>Punishments, if Any</h4>
-          ${displayValue(item.punishments_if_any)}
-        </section>
+  const evidence = item.evidence;
+  const description =
+    item.description_analysis ||
+    item.description;
 
-        <section class="issue-detail">
-          <h4>Description / Analysis</h4>
-          ${displayValue(item.description_analysis)}
-        </section>
-      </article>
-    `;
-  }
+  const recommendation = item.recommendation;
+
+  const analysisParts = [
+    description,
+    evidence ? `Evidence from document: ${evidence}` : "",
+    recommendation ? `Recommended next step: ${recommendation}` : ""
+  ].filter(Boolean);
+
+  const analysis = analysisParts.length
+    ? analysisParts.join("\n\n")
+    : "";
+
+  const punishment =
+    item.punishments_if_any ||
+    item.potential_consequences;
+
+  return `
+    <article class="legal-issue">
+      <h3>Issue ${index + 1} — ${esc(title)}</h3>
+
+      <section class="issue-detail">
+        <h4>Applicable Laws / Legal Context</h4>
+        ${displayValue(legalContext)}
+      </section>
+
+      <section class="issue-detail">
+        <h4>Punishments or Consequences, if Applicable</h4>
+        ${displayValue(
+          punishment,
+          "No specific punishment or consequence was established by the analysis."
+        )}
+      </section>
+
+      <section class="issue-detail">
+        <h4>Description / Analysis</h4>
+        ${displayValue(analysis)}
+      </section>
+    </article>
+  `;
+}
 
   function renderReport(report) {
     const r = report || {};
@@ -252,12 +284,28 @@
     }
 
     const otherSections = [
-      ["Constitutional Articles", r.constitutional_articles],
-      ["Rules and Regulations", r.rules_and_regulations],
-      ["Missing Evidence / Information", r.missing_evidence],
-      ["Suggested Next Steps", r.next_steps],
-      ["Cautions and Uncertainties", r.cautions]
-    ];
+  ["Key Findings", r.key_points || r.findings],
+  [
+    "Constitutional Articles",
+    r.constitutional_articles
+  ],
+  [
+    "Rules and Regulations",
+    r.rules_and_regulations
+  ],
+  [
+    "Missing Evidence / Information",
+    r.missing_evidence || r.missing_information
+  ],
+  [
+    "Suggested Next Steps",
+    r.next_steps || r.suggested_actions || r.recommendations
+  ],
+  [
+    "Cautions and Uncertainties",
+    r.cautions
+  ]
+];
 
     for (const [title, value] of otherSections) {
       html += `
