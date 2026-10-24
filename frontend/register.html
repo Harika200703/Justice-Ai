@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b49">
+  <title>Create Account | Justice AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #102b49;
+      --gold: #e58a0a;
+      --ivory: #faf7f0;
+      --text: #172f49;
+      --muted: #7c899b;
+      --line: #e1e5eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background: var(--ivory);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input { font: inherit; }
+
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 3px solid rgba(229,138,10,.55);
+      outline-offset: 3px;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    .visual {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 34px 45px 28px;
+      color: white;
+      background:
+        radial-gradient(ellipse at 50% 40%, #173b5c 0%, transparent 57%),
+        linear-gradient(145deg, #102b49, #071829);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      padding: 3px;
+      border: 1px solid rgba(242,199,126,.5);
+      border-radius: 50%;
+      background: var(--ivory);
+      object-fit: contain;
+    }
+
+    .gold { color: #f2c77e; }
+
+    .visual-main {
+      max-width: 460px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .logo-stage {
+      display: grid;
+      place-items: center;
+      width: min(280px, 75%);
+      aspect-ratio: 1;
+      margin: 0 auto 34px;
+      padding: 15px;
+      border: 2px solid #d99a36;
+      border-radius: 50%;
+      background: var(--ivory);
+      box-shadow: 0 0 0 6px rgba(229,138,10,.1),
+                  0 18px 55px rgba(0,0,0,.23);
+    }
+
+    .logo-stage img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: contain;
+    }
+
+    .gold-rule {
+      width: 43px;
+      height: 2px;
+      margin: 0 auto 20px;
+      background: var(--gold);
+    }
+
+    .visual h2 {
+      margin: 0;
+      color: #fffaf1;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(29px, 3vw, 42px);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .visual h2 em {
+      color: #f4ad36;
+      font-style: normal;
+    }
+
+    .visual-copy {
+      max-width: 370px;
+      margin: 17px auto 0;
+      color: #c1ccd8;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .visual-footer {
+      color: #c4ced9;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .login-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      padding: 38px clamp(22px, 4.5vw, 68px);
+      background:
+        radial-gradient(ellipse at 100% 0%, #f2e7d5 0%, transparent 42%),
+        radial-gradient(ellipse at 0% 100%, #f8f0e4 0%, transparent 37%),
+        var(--ivory);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 490px;
+      padding: clamp(27px, 3.2vw, 44px);
+      border: 1px solid rgba(255,255,255,.95);
+      border-radius: 20px;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 24px 75px rgba(23,40,58,.075);
+      animation: rise .55s ease-out both;
+    }
+
+    .mobile-brand {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 23px;
+      font-weight: 600;
+    }
+
+    .mobile-brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .overline {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0 0 20px;
+      color: #7c8799;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      line-height: 1.8;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(229,138,10,.13);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--navy);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(36px, 3.2vw, 48px);
+      font-weight: 600;
+      letter-spacing: -1.4px;
+      line-height: 1.2;
+    }
+
+    h1 span { color: var(--gold); }
+
+    .subtitle {
+      margin: 13px 0 27px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .field { margin-bottom: 19px; }
+
+    label {
+      display: block;
+      margin-bottom: 9px;
+      color: #173451;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 15px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--navy);
+      background: white;
+      font-size: 13px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    input:focus {
+      border-color: var(--gold);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(229,138,10,.1);
+    }
+
+    input::placeholder { color: #a0abba; }
+
+    .submit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      min-height: 55px;
+      margin-top: 9px;
+      padding: 15px 19px;
+      border: 1px solid var(--navy);
+      border-radius: 8px;
+      color: white;
+      background: linear-gradient(110deg, #102b49, #0b2340);
+      box-shadow: 0 8px 18px rgba(16,43,73,.12);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
+
+    .submit:hover:not(:disabled) {
+      background: #183d60;
+      transform: translateY(-1px);
+    }
+
+    .submit:disabled { opacity: .65; cursor: wait; }
+
+    .arrow {
+      color: #f2c77e;
+      font-size: 21px;
+    }
+
+    .message {
+      display: none;
+      margin: 14px 0 0;
+      padding: 12px 14px;
+      border: 1px solid #f0cfca;
+      border-radius: 7px;
+      font-size: 12px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .switch-mode {
+      margin: 23px 0 0;
+      color: #8792a2;
+      font-size: 12px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .switch-mode a {
+      color: var(--navy);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .switch-mode a:hover { color: #bd791b; }
+
+    .security {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 24px 0 0;
+      color: #8290a2;
+      font-size: 10px;
+      line-height: 1.9;
+    }
+
+    .security-symbol { color: var(--gold); font-size: 18px; }
+
+    .footer {
+      width: 100%;
+      max-width: 490px;
+      margin-top: 20px;
+      color: #8995a5;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .page { display: block; }
+      .visual { display: none; }
+
+      .login-side {
+        min-height: 100vh;
+        padding: 24px 16px;
+      }
+
+      .card {
+        max-width: 500px;
+        padding: 28px 23px;
+        border-radius: 17px;
+      }
+
+      .mobile-brand { display: flex; }
+      h1 { font-size: clamp(36px, 9vw, 45px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="visual" aria-label="Justice AI branding">
+      <header class="brand">
+        <img src="assets/justice-ai-logo.png" alt="Justice AI logo">
+        <span>JUSTICE <span class="gold">AI</span></span>
+      </header>
+
+      <div class="visual-main">
+        <div class="logo-stage">
+          <img src="assets/justice-ai-logo.png" alt="Justice AI">
+        </div>
+        <div class="gold-rule"></div>
+        <h2>Begin with clarity.<br><em>Move forward with confidence.</em></h2>
+        <p class="visual-copy">
+          Create your secure workspace to analyse legal documents,
+          organise evidence and explore legal information.
+        </p>
+      </div>
+
+      <footer class="visual-footer">
+        INTELLIGENCE · INTEGRITY · JUSTICE
+      </footer>
+    </section>
+
+    <section class="login-side">
+      <div class="card">
+        <div class="mobile-brand">
+          <img src="assets/justice-ai-logo.png" alt="">
+          <span>Justice AI</span>
+        </div>
+
+        <p class="overline">
+          <span class="dot"></span>
+          YOUR LEGAL INTELLIGENCE WORKSPACE
+        </p>
+
+        <h1>Create your<br>account<span>.</span></h1>
+        <p class="subtitle">
+          Join Justice AI and create your secure legal intelligence workspace.
+        </p>
+
+        <form id="registerForm">
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              maxlength="254"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="password">Create password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="At least 8 characters"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="confirmPassword">Confirm password</label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              placeholder="Re-enter your password"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            >
+          </div>
+
+          <button class="submit" type="submit" id="createButton">
+            <span>Create your account</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </button>
+
+          <p class="message" id="formMessage" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="switch-mode">
+          Already have an account?
+          <a href="login.html">Sign in</a>
+        </p>
+
+        <div class="security">
+          <span class="security-symbol" aria-hidden="true">◇</span>
+          <span>Your password is securely hashed by the Justice AI backend.</span>
+        </div>
+      </div>
+
+      <footer class="footer">© 2026 Justice AI · Built for informed decisions.</footer>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script>
+    (() => {
+      const API_BASE_URL =
+        window.JUSTICE_AI_CONFIG?.API_BASE_URL || "http://127.0.0.1:8000";
+
+      const form = document.getElementById("registerForm");
+      const button = document.getElementById("createButton");
+      const message = document.getElementById("formMessage");
+
+      function showMessage(text, success = false) {
+        message.textContent = text;
+        message.style.display = "block";
+        message.style.color = success ? "#15803d" : "#dc2626";
+        message.style.background = success ? "#f0fdf4" : "#fff7f6";
+        message.style.borderColor = success ? "#bbf7d0" : "#f0cfca";
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        if (password.length < 8) {
+          showMessage("Your password must contain at least 8 characters.");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          showMessage("Passwords do not match.");
+          return;
+        }
+
+        button.disabled = true;
+        button.querySelector("span").textContent = "Creating account...";
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+          });
+
+          const data = await response.json().catch(() => ({}));
+
+          if (!response.ok) {
+            let detail = data.detail || data.message || "Account creation failed.";
+
+            if (Array.isArray(detail)) {
+              detail = detail.map(item => item.msg).join(" ");
+            }
+
+            throw new Error(detail);
+          }
+
+          showMessage(
+            "Account created successfully! Redirecting you to sign in...",
+            true
+          );
+
+          button.querySelector("span").textContent = "Account created";
+
+          setTimeout(() => {
+            window.location.href = "login.html?registered=1";
+          }, 1000);
+        } catch (error) {
+          console.error("Justice AI registration error:", error);
+          showMessage(
+            error.message ||
+            "Could not create your account. Check that the backend is running."
+          );
+
+          button.disabled = false;
+          button.querySelector("span").textContent = "Create your account";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

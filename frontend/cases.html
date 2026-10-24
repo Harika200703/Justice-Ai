@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="Manage and organise your legal cases in Justice AI.">
+  <title>My Cases | Justice AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="cases.css">
+  <script src="config.js"></script>
+  <script src="cases.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <aside class="sidebar">
+      <a class="brand" href="overview.html" aria-label="Justice AI overview">
+        <span class="brand-logo">
+          <img
+            src="assets/justice-ai-logo.png"
+            alt="Justice AI logo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+          >
+          <span class="brand-fallback" aria-hidden="true">J</span>
+        </span>
+
+        <span class="brand-copy">
+          JUSTICE<span>AI</span>
+          <small>LEGAL INTELLIGENCE</small>
+        </span>
+      </a>
+
+      <p class="sidebar-label">YOUR WORKSPACE</p>
+
+      <nav class="sidebar-nav" aria-label="Workspace navigation">
+        <a class="nav-link" href="overview.html">
+          <span class="nav-icon">⌂</span>
+          <span>Overview</span>
+        </a>
+
+        <a class="nav-link" href="dashboard.html">
+          <span class="nav-icon">＋</span>
+          <span>New analysis</span>
+        </a>
+
+        <a class="nav-link" href="history.html">
+          <span class="nav-icon">▤</span>
+          <span>Document history</span>
+        </a>
+
+        <a class="nav-link active" href="cases.html" aria-current="page">
+          <span class="nav-icon">▣</span>
+          <span>My Cases</span>
+          <span class="active-indicator"></span>
+        </a>
+
+        <a class="nav-link" href="chat.html">
+          <span class="nav-icon">✧</span>
+          <span>Legal assistant</span>
+        </a>
+
+        <a class="nav-link" href="sources.html">
+          <span class="nav-icon">⚖</span>
+          <span>Legal sources</span>
+        </a>
+
+        <a class="nav-link" href="settings.html">
+          <span class="nav-icon">⚙</span>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+
+      <div class="sidebar-note">
+        <span class="note-symbol">§</span>
+        <h3>Clarity through context.</h3>
+        <p>Keep your legal matters organised in one private workspace.</p>
+        <a href="sources.html">Explore official sources ↗</a>
+      </div>
+
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span>
+        <span>Private case workspace</span>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb">
+          WORKSPACE <span>/</span> CASE MANAGEMENT
+        </div>
+
+        <div class="topbar-actions">
+          <span class="workspace-indicator">
+            <span class="status-dot"></span>
+            Personal workspace
+          </span>
+
+          <a class="back-link" href="overview.html">← Overview</a>
+        </div>
+      </header>
+
+      <div class="page-content">
+
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow">YOUR LEGAL WORKSPACE</p>
+            <h1>My <span>Cases</span><span class="heading-period">.</span></h1>
+            <p class="page-subtitle">
+              A clear record of the legal matters you are managing.
+              Create a case, keep notes and track its progress.
+            </p>
+          </div>
+
+          <a class="primary-button heading-button" href="#createCaseSection">
+            <span>＋</span> Register a case
+          </a>
+        </section>
+
+        <section class="summary-grid" aria-label="Case statistics">
+          <article class="summary-card summary-primary">
+            <div class="summary-top">
+              <span class="summary-label">ALL CASES</span>
+              <span class="summary-icon">▣</span>
+            </div>
+            <strong class="summary-number" id="totalCases">—</strong>
+            <span class="summary-caption">Cases in your account</span>
+          </article>
+
+          <article class="summary-card">
+            <div class="summary-top">
+              <span class="summary-label">OPEN</span>
+              <span class="summary-icon icon-open">○</span>
+            </div>
+            <strong class="summary-number" id="openCases">—</strong>
+            <span class="summary-caption">Awaiting progress</span>
+          </article>
+
+          <article class="summary-card">
+            <div class="summary-top">
+              <span class="summary-label">IN PROGRESS</span>
+              <span class="summary-icon icon-progress">↗</span>
+            </div>
+            <strong class="summary-number" id="inProgressCases">—</strong>
+            <span class="summary-caption">Currently being handled</span>
+          </article>
+
+          <article class="summary-card">
+            <div class="summary-top">
+              <span class="summary-label">CLOSED</span>
+              <span class="summary-icon icon-closed">✓</span>
+            </div>
+            <strong class="summary-number" id="closedCases">—</strong>
+            <span class="summary-caption">Marked as completed</span>
+          </article>
+        </section>
+
+        <section class="panel create-panel" id="createCaseSection">
+          <div class="panel-heading">
+            <div class="panel-heading-main">
+              <span class="section-number">01</span>
+              <div>
+                <p class="eyebrow">CASE REGISTER</p>
+                <h2>Register a new case</h2>
+                <p class="section-description">
+                  Add the basic details so you can find and manage this matter later.
+                </p>
+              </div>
+            </div>
+
+            <span class="heading-decoration">＋</span>
+          </div>
+
+          <form id="caseForm">
+            <div class="form-grid">
+              <div class="field field-wide">
+                <label for="caseTitle">Case title <span>*</span></label>
+                <input
+                  id="caseTitle"
+                  name="title"
+                  type="text"
+                  maxlength="200"
+                  placeholder="e.g. Property ownership dispute"
+                  autocomplete="off"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="caseType">Case type</label>
+                <select id="caseType" name="case_type">
+                  <option value="General">General</option>
+                  <option value="Civil">Civil</option>
+                  <option value="Criminal">Criminal</option>
+                  <option value="Property">Property</option>
+                  <option value="Family">Family</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Consumer">Consumer</option>
+                  <option value="Employment">Employment</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="field field-wide">
+                <label for="caseDescription">Description and notes</label>
+                <textarea
+                  id="caseDescription"
+                  name="description"
+                  rows="4"
+                  maxlength="10000"
+                  placeholder="Briefly describe the matter, important details or notes you want to remember..."
+                ></textarea>
+                <span class="field-hint">Optional · Maximum 10,000 characters</span>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+
+              <button id="createCaseButton" class="primary-button" type="submit">
+                <span>＋</span> Create case
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel records-panel">
+          <div class="records-heading">
+            <div>
+              <p class="eyebrow">YOUR RECORDS</p>
+              <h2>Registered cases</h2>
+              <p class="section-description">
+                View your matters and update their status as they progress.
+              </p>
+            </div>
+
+            <button id="refreshCases" class="secondary-button" type="button">
+              <span class="refresh-icon">↻</span> Refresh
+            </button>
+          </div>
+
+          <div class="records-toolbar">
+            <div class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <input
+                id="caseSearch"
+                type="search"
+                placeholder="Search cases by title or ID..."
+                aria-label="Search cases"
+              >
+            </div>
+
+            <label class="filter-control">
+              <span class="sr-only">Filter cases by status</span>
+              <select id="statusFilter">
+                <option value="All">All statuses</option>
+                <option value="Open">Open</option>
+                <option value="In Progress">In progress</option>
+                <option value="Closed">Closed</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="records-meta">
+            <span id="resultsCount">Your case register</span>
+            <span class="private-label"><span>●</span> Private records</span>
+          </div>
+
+          <p id="listStatus" class="list-status" role="status" aria-live="polite">
+            Loading your cases…
+          </p>
+
+          <div id="caseList" class="case-list"></div>
+        </section>
+
+        <footer class="page-footer">
+          <span>JUSTICE AI <span class="footer-divider">·</span> CASE MANAGEMENT</span>
+          <span>Informational legal research, not legal advice.</span>
+        </footer>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

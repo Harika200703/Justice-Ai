@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b2c4d">
+  <meta name="description" content="Justice AI legal document intelligence and research">
+  <title>New Analysis | Justice AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+
+  <style>
+    /* Justice AI Assistant dashboard card */
+    .justice-assistant-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin: 26px 0;
+      padding: 30px;
+      overflow: hidden;
+      color: #f7f3eb;
+      text-decoration: none;
+      border: 1px solid rgba(201, 169, 110, 0.4);
+      border-radius: 18px;
+      background:
+        radial-gradient(ellipse at 95% 0%, rgba(198, 165, 104, 0.18), transparent 45%),
+        linear-gradient(120deg, #10233c 0%, #173653 100%);
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+
+    .justice-assistant-card:hover {
+      transform: translateY(-3px);
+      border-color: #c9a96e;
+    }
+
+    .justice-assistant-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 650px;
+    }
+
+    .justice-assistant-eyebrow {
+      display: block;
+      margin-bottom: 12px;
+      color: #d8bd87;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .justice-assistant-card h2 {
+      margin: 0 0 10px;
+      color: #fbf7ef;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(23px, 3vw, 32px);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .justice-assistant-card p {
+      margin: 0;
+      color: #d0d9e4;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .justice-assistant-languages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .justice-assistant-languages span {
+      padding: 6px 10px;
+      color: #e7d6b3;
+      border: 1px solid rgba(231, 214, 179, 0.25);
+      border-radius: 20px;
+      font-size: 11px;
+    }
+
+    .justice-assistant-action {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 12px;
+      color: #17283b;
+      background: #d8bd87;
+      border-radius: 9px;
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+
+    .justice-assistant-card:hover .justice-assistant-action {
+      background: #ead5a9;
+    }
+
+    .justice-assistant-action span {
+      font-size: 18px;
+    }
+
+    .assistant-sidebar-link .nav-icon {
+      color: #d8bd87;
+    }
+
+    @media (max-width: 640px) {
+      .justice-assistant-card {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 23px;
+      }
+
+      .justice-assistant-action {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .justice-assistant-card,
+      .justice-assistant-action {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="overview.html" aria-label="Justice AI overview">
+        <span class="brand-logo">
+          <img src="assets/justice-ai-logo.png" alt="Justice AI logo">
+        </span>
+        <span class="brand-name">
+          JUSTICE<span>AI</span>
+          <small>LEGAL INTELLIGENCE</small>
+        </span>
+      </a>
+
+      <div class="sidebar-caption">YOUR WORKSPACE</div>
+
+      <nav class="navigation" aria-label="Workspace navigation">
+        <a href="overview.html" class="nav-link">
+          <span class="nav-icon">⌂</span>
+          <span>Overview</span>
+        </a>
+
+        <a href="dashboard.html" class="nav-link active" aria-current="page">
+          <span class="nav-icon">＋</span>
+          <span>New analysis</span>
+          <span class="nav-marker"></span>
+        </a>
+
+        <!-- NEW: Chatbot navigation -->
+        <a href="chat.html" class="nav-link assistant-sidebar-link">
+          <span class="nav-icon">✧</span>
+          <span>Justice AI Assistant</span>
+        </a>
+
+        <a href="history.html" class="nav-link">
+          <span class="nav-icon">▤</span>
+          <span>Document history</span>
+        </a>
+        <a href="cases.html" class="nav-link">
+  <span class="nav-icon">▣</span>
+  <span>My Cases</span>
+</a>
+        <a href="sources.html" class="nav-link">
+          <span class="nav-icon">⚖</span>
+          <span>Legal sources</span>
+        </a>
+
+        <a href="settings.html" class="nav-link">
+          <span class="nav-icon">⚙</span>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+
+      <div class="sidebar-callout">
+        <div class="callout-symbol">⚖</div>
+        <h3>Clarity through context.</h3>
+        <p>Legal provisions depend on facts, jurisdiction and the law in force.</p>
+        <a href="sources.html">Explore official sources ↗</a>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="status-dot"></span>
+        <span>Legal research workspace</span>
+      </div>
+    </aside>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu" id="mobileMenu" type="button"
+                  aria-label="Open navigation">☰</button>
+
+          <div>
+            <div class="breadcrumb">WORKSPACE <span>/</span> LEGAL RESEARCH</div>
+            <div class="topbar-title">New analysis</div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="account">
+            <div class="account-avatar">J</div>
+            <div class="account-info">
+              <strong id="userEmail">Your account</strong>
+              <span>Personal workspace</span>
+            </div>
+          </div>
+
+          <button class="signout-button" id="logoutButton" type="button">
+            Sign out <span>↗</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="workspace" id="workspace">
+
+        <section class="section-intro">
+          <div>
+            <span class="section-kicker">DOCUMENT WORKSPACE</span>
+            <h1>Analyse your legal document<span class="title-period">.</span></h1>
+            <p>
+              Identify the dispute, explore potentially relevant Indian laws,
+              review evidence gaps and organise practical next steps.
+            </p>
+          </div>
+
+          <span class="workspace-badge">
+            <span></span> Indian legal research
+          </span>
+        </section>
+
+        <!-- NEW: Justice AI chatbot card -->
+        <a href="chat.html"
+           class="justice-assistant-card"
+           aria-label="Open Justice AI Assistant">
+
+          <div class="justice-assistant-copy">
+            <span class="justice-assistant-eyebrow">
+              YOUR LEGAL AI COMPANION
+            </span>
+
+            <h2>Have a legal question?</h2>
+
+            <p>
+              Understand legal concepts, explore possible next steps and ask
+              questions about Indian law in a conversational interface.
+            </p>
+
+            <div class="justice-assistant-languages">
+              <span>English</span>
+              <span>తెలుగు</span>
+              <span>हिन्दी</span>
+            </div>
+          </div>
+
+          <div class="justice-assistant-action">
+            Open Assistant <span>↗</span>
+          </div>
+        </a>
+
+        <section class="panel upload-panel" id="uploadSection">
+          <div class="panel-heading">
+            <div class="panel-heading-copy">
+              <span class="panel-index">01</span>
+              <div>
+                <span class="section-kicker">DOCUMENT INPUT</span>
+                <h2>Start a new analysis</h2>
+              </div>
+            </div>
+            <span class="heading-decoration">↗</span>
+          </div>
+
+          <p class="panel-description">
+            Select your document and choose the relevant jurisdiction.
+            Your structured findings will appear below.
+          </p>
+
+          <form id="analyzeForm">
+            <label class="field-label" for="documentFile">Legal document</label>
+
+            <label class="upload-dropzone" for="documentFile">
+              <span class="upload-visual">
+                <span class="upload-file-icon">▤</span>
+                <span class="upload-arrow">↑</span>
+              </span>
+
+              <strong>Choose a document to analyse</strong>
+              <span class="upload-description">Select a file from your device</span>
+
+              <span class="file-formats">
+                <span>PDF</span>
+                <span>DOCX</span>
+                <span>TXT</span>
+                <span class="format-divider"></span>
+                <span>MAX 12 MB</span>
+              </span>
+
+              <input
+                type="file"
+                id="documentFile"
+                name="file"
+                accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
+                required
+              >
+
+              <span class="upload-footnote" id="fileHint">
+                No document selected
+              </span>
+            </label>
+
+            <label class="field-label" for="state">State / Union Territory</label>
+
+            <div class="select-wrap">
+              <select id="state" name="state">
+                <option value="">Not specified</option>
+                <option>Andhra Pradesh</option>
+                <option>Arunachal Pradesh</option>
+                <option>Assam</option>
+                <option>Bihar</option>
+                <option>Chhattisgarh</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Himachal Pradesh</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Manipur</option>
+                <option>Meghalaya</option>
+                <option>Mizoram</option>
+                <option>Nagaland</option>
+                <option>Odisha</option>
+                <option>Punjab</option>
+                <option>Rajasthan</option>
+                <option>Sikkim</option>
+                <option>Tamil Nadu</option>
+                <option>Telangana</option>
+                <option>Tripura</option>
+                <option>Uttar Pradesh</option>
+                <option>Uttarakhand</option>
+                <option>West Bengal</option>
+                <option>Andaman and Nicobar Islands</option>
+                <option>Chandigarh</option>
+                <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                <option>Delhi</option>
+                <option>Jammu and Kashmir</option>
+                <option>Ladakh</option>
+                <option>Lakshadweep</option>
+                <option>Puducherry</option>
+              </select>
+              <span class="select-chevron">⌄</span>
+            </div>
+
+            <div class="jurisdiction-note">
+              <span class="note-symbol">i</span>
+              <p>
+                Choose the jurisdiction relevant to your document.
+                Leave unspecified if you are unsure.
+              </p>
+            </div>
+
+            <button class="button-primary analyze-button" id="analyzeButton" type="submit">
+              <span class="button-copy">
+                <small>DOCUMENT REVIEW</small>
+                <strong>Analyse document</strong>
+              </span>
+              <span class="button-arrow">→</span>
+            </button>
+
+            <p class="form-message" id="analysisMessage"
+               role="status" aria-live="polite"></p>
+
+            <div class="upload-security">
+              <span>◇</span>
+              <p>
+                Upload only documents you are authorised to share.
+                Avoid unnecessary sensitive personal information.
+              </p>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel report-panel report-panel-wide" id="reportSection">
+          <div class="report-top">
+            <div>
+              <span class="section-kicker">STRUCTURED FINDINGS</span>
+              <h2>Legal analysis report</h2>
+              <p>
+                Dispute title, issues, potentially applicable provisions
+                and detailed analysis.
+              </p>
+            </div>
+            <span class="report-status"><span></span> REPORT</span>
+          </div>
+
+          <div class="report-rule"></div>
+
+          <div class="result-empty" id="resultArea">
+            <div class="report-placeholder">
+              <span class="placeholder-number">YOUR RESEARCH REPORT</span>
+              <h3>Your findings will appear here.</h3>
+              <p>
+                Upload a document to organise the dispute title, legal issues,
+                potentially applicable Acts and sections, detailed analysis,
+                missing evidence and suggested next steps.
+              </p>
+            </div>
+          </div>
+
+          <div class="report-caution">
+            <span>!</span>
+            <p>
+              Verify legal findings against official sources.
+              AI-generated research is informational and is not legal advice.
+            </p>
+          </div>
+        </section>
+
+        <!-- Retained for compatibility with existing dashboard.js -->
+        <div id="documentList" hidden></div>
+
+        <footer class="workspace-footer">
+          <a class="footer-brand" href="overview.html">JUSTICE<span>AI</span></a>
+          <p>Informational legal research only. Not legal advice.</p>
+          <span>© <span id="currentYear"></span> Justice AI</span>
+        </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="dashboard.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const fileInput = document.getElementById("documentFile");
+      const fileHint = document.getElementById("fileHint");
+      const menuButton = document.getElementById("mobileMenu");
+      const sidebar = document.getElementById("sidebar");
+      const year = document.getElementById("currentYear");
+      const logoutButton = document.getElementById("logoutButton");
+
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+
+      const token =
+        sessionStorage.getItem("justice_ai_token") ||
+        localStorage.getItem("justice_ai_token");
+
+      if (!token) {
+        window.location.replace("login.html");
+        return;
+      }
+
+      if (logoutButton) {
+        logoutButton.addEventListener("click", () => {
+          sessionStorage.removeItem("justice_ai_token");
+          localStorage.removeItem("justice_ai_token");
+          window.location.replace("login.html");
+        });
+      }
+
+      if (fileInput && fileHint) {
+        fileInput.addEventListener("change", () => {
+          const file = fileInput.files && fileInput.files[0];
+
+          if (!file) {
+            fileHint.textContent = "No document selected";
+            fileHint.classList.remove("file-error", "file-selected");
+            fileInput.setCustomValidity("");
+            return;
+          }
+
+          const sizeMB = file.size / (1024 * 1024);
+
+          if (sizeMB > 12) {
+            fileHint.textContent = "File exceeds the 12 MB limit";
+            fileHint.classList.add("file-error");
+            fileHint.classList.remove("file-selected");
+            fileInput.setCustomValidity(
+              "Please select a file smaller than 12 MB."
+            );
+          } else {
+            fileHint.textContent =
+              `${file.name} · ${sizeMB.toFixed(2)} MB`;
+            fileHint.classList.remove("file-error");
+            fileHint.classList.add("file-selected");
+            fileInput.setCustomValidity("");
+          }
+        });
+      }
+
+      if (menuButton && sidebar) {
+        menuButton.addEventListener("click", () => {
+          sidebar.classList.toggle("sidebar-open");
+        });
+      }
+    });
+  </script>
+</body>
+</html>

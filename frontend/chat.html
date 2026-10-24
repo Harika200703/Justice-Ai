@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080f1c">
+  <title>Justice AI | Legal Assistant</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="chat.css">
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+  <script src="chat.js" defer></script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="dashboard.html" aria-label="Justice AI dashboard">
+        <img class="brand-logo"
+             src="assets/justice-ai-logo.png"
+             alt="Justice AI logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <span class="brand-fallback">J</span>
+        <span class="brand-copy">
+          JUSTICE <b>AI</b>
+          <small>LEGAL INTELLIGENCE</small>
+        </span>
+      </a>
+
+      
+<div class="sidebar-label">YOUR WORKSPACE</div>
+
+<nav class="sidebar-nav" aria-label="Main navigation">
+  <a class="nav-link" href="dashboard.html">
+    <span class="nav-icon">⌂</span>
+    <span>Dashboard</span>
+  </a>
+
+  <a class="nav-link" href="dashboard.html#new-analysis">
+    <span class="nav-icon">✧</span>
+    <span>New analysis</span>
+  </a>
+
+  <a class="nav-link" href="cases.html">
+    <span class="nav-icon">▤</span>
+    <span>My Cases</span>
+  </a>
+
+  <a class="nav-link" href="history.html">
+    <span class="nav-icon">◷</span>
+    <span>Document history</span>
+  </a>
+
+  <a class="nav-link" href="sources.html">
+    <span class="nav-icon">§</span>
+    <span>Legal sources</span>
+  </a>
+
+  <a class="nav-link active" href="chat.html" aria-current="page">
+    <span class="nav-icon">✦</span>
+    <span>Legal assistant</span>
+    <span class="active-indicator"></span>
+  </a>
+</nav>
+
+<section class="history-panel">
+  <div class="history-heading">
+    <span>RECENT CONVERSATIONS</span>
+    <button type="button" id="newChatButton" title="Start a new chat">+</button>
+  </div>
+
+  <div id="conversationHistory" class="conversation-history">
+    <p class="history-empty">Your conversations will appear here.</p>
+  </div>
+</section>
+
+      <div class="sidebar-bottom">
+        <div class="assistant-status">
+          <span class="status-dot"></span>
+          <span>Legal assistant</span>
+        </div>
+        <p>Understand the law. Explore your options.</p>
+        <small>General legal information, not legal advice.</small>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu" id="mobileMenu"
+                  type="button" aria-label="Open navigation"
+                  aria-expanded="false">☰</button>
+
+          <div class="breadcrumb">
+            WORKSPACE <span>/</span> LEGAL ASSISTANT
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <label class="header-option">
+            <span>LANGUAGE</span>
+            <select id="language" aria-label="Response language">
+              <option value="English">English</option>
+              <option value="Telugu">తెలుగు (Telugu)</option>
+              <option value="Hindi">हिन्दी (Hindi)</option>
+            </select>
+          </label>
+
+          <label class="header-option jurisdiction-option">
+            <span>JURISDICTION</span>
+            <select id="state" aria-label="State or jurisdiction">
+              <option value="India">India — General</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Other state or UT">Other state / UT</option>
+            </select>
+          </label>
+
+          <a href="dashboard.html" class="back-link">Dashboard ↗</a>
+        </div>
+      </header>
+
+      <section class="chat-page">
+        <div class="conversation" id="conversation">
+
+          <section class="welcome" id="welcome">
+            <div class="welcome-kicker">
+              <span class="gold-line"></span>
+              YOUR LEGAL RESEARCH COMPANION
+            </div>
+
+            <h1>Legal research,<br><em>made clearer.</em></h1>
+
+            <p class="welcome-description">
+              Understand Indian law, explore possible next steps,
+              and discover official resources — one question at a time.
+            </p>
+
+            <div class="suggestion-heading">
+              <span>WHAT WOULD YOU LIKE TO KNOW?</span>
+              <span>CHOOSE A QUESTION</span>
+            </div>
+
+            <div class="suggestions">
+              <button type="button" class="suggestion"
+                data-question="What can I do if the police refuse to register an FIR in Telangana?">
+                <span class="suggestion-icon">§</span>
+                <span class="suggestion-copy">
+                  <strong>Police and FIR</strong>
+                  <small>Understand possible remedies</small>
+                </span>
+                <span class="suggestion-arrow">↗</span>
+              </button>
+
+              <button type="button" class="suggestion"
+                data-question="Explain the difference between a civil case and a criminal case in India.">
+                <span class="suggestion-icon">⚖</span>
+                <span class="suggestion-copy">
+                  <strong>Civil vs. criminal law</strong>
+                  <small>Learn the key differences</small>
+                </span>
+                <span class="suggestion-arrow">↗</span>
+              </button>
+
+              <button type="button" class="suggestion"
+                data-question="How can I find and verify an Indian law using official legal sources?">
+                <span class="suggestion-icon">⌕</span>
+                <span class="suggestion-copy">
+                  <strong>Find a relevant law</strong>
+                  <small>Explore official resources</small>
+                </span>
+                <span class="suggestion-arrow">↗</span>
+              </button>
+
+              <button type="button" class="suggestion"
+                data-question="What are the usual stages of a civil dispute in India?">
+                <span class="suggestion-icon">↗</span>
+                <span class="suggestion-copy">
+                  <strong>Legal procedures</strong>
+                  <small>Understand the next steps</small>
+                </span>
+                <span class="suggestion-arrow">↗</span>
+              </button>
+            </div>
+
+            <div class="welcome-language-note">
+              <span>✳</span> Ask your question in English, Telugu, or Hindi.
+            </div>
+          </section>
+
+          <div id="messages" class="messages" aria-live="polite" hidden></div>
+        </div>
+
+        <div class="composer-dock">
+          <form id="chatForm" class="composer">
+  <input
+    id="chatFileInput"
+    type="file"
+    accept=".pdf,.docx,.txt"
+    hidden
+  />
+
+  <div id="chatAttachmentPreview" class="chat-attachment" hidden>
+    <span class="attachment-icon">📄</span>
+    <span id="chatAttachmentName" class="attachment-name"></span>
+    <button
+      id="removeChatAttachment"
+      type="button"
+      aria-label="Remove attachment"
+      title="Remove attachment"
+    >×</button>
+  </div>
+
+  <div class="composer-input-row">
+    <button
+      id="attachChatFile"
+      type="button"
+      class="attach-chat-file"
+      aria-label="Attach a document"
+      title="Attach a PDF, DOCX, or TXT"
+    >+</button>
+
+    <textarea
+      id="messageInput"
+      rows="2"
+      maxlength="6000"
+      placeholder="Ask a question about Indian law..."
+      aria-label="Your legal question"
+      required
+    ></textarea>
+  </div>
+
+  <div class="composer-footer">
+    <span id="chatUploadStatus">
+      Attach a document or ask a general legal question.
+    </span>
+    <button id="sendButton" type="submit">
+      <span>Send question</span> <b>↑</b>
+    </button>
+  </div>
+</form>
+
+          <p id="chatStatus" class="chat-status" role="status" aria-live="polite"></p>
+
+          <div class="disclaimer">
+            <span>◇</span>
+            <p>
+              General legal information, not legal advice.
+              Verify important details against official sources.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

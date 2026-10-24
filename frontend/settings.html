@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings | Justice AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <div id="pageNavigation"></div>
+
+  <main class="page-main">
+    <span class="page-kicker">WORKSPACE PREFERENCES</span>
+    <h1 class="page-heading">Account settings<span style="color:#e58a0a">.</span></h1>
+    <p class="page-intro">View your current sign-in details and manage your Justice AI session.</p>
+
+    <section class="page-card" style="margin-top:25px">
+      <span class="page-kicker">ACCOUNT INFORMATION</span>
+      <h2 style="margin-top:10px">Your account</h2>
+      <label class="page-field" for="settingsEmail">Signed-in email</label>
+      <input class="page-input" id="settingsEmail" type="text" readonly value="Loading account…">
+      <p>Your account information is loaded from the existing authenticated backend endpoint.</p>
+    </section>
+
+    <section class="page-card" style="margin-top:18px">
+      <span class="page-kicker">SECURITY</span>
+      <h2 style="margin-top:10px">Session management</h2>
+      <p>Sign out to remove the saved Justice AI access token from this browser. You can sign in again whenever you need to continue your research.</p>
+      <button class="page-button" id="settingsSignout" type="button">Sign out securely ↗</button>
+    </section>
+
+    <section class="page-card" style="margin-top:18px">
+      <span class="page-kicker">LEGAL DISCLAIMER</span>
+      <h2 style="margin-top:10px">Research, not legal advice</h2>
+      <p>Justice AI provides informational assistance. AI-generated legal findings can be incomplete or incorrect. Verify the current law and seek advice from a qualified lawyer before taking legal action.</p>
+    </section>
+
+    <footer class="page-footer">
+      <span>JUSTICE AI · ACCOUNT SETTINGS</span>
+      <span>Keep your login credentials private.</span>
+    </footer>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="pages.js"></script>
+  <script>
+    document.getElementById("settingsSignout").addEventListener("click", () => {
+      sessionStorage.removeItem("justice_ai_token");
+      localStorage.removeItem("justice_ai_token");
+      location.replace("login.html");
+    });
+  </script>
+</body>
+</html>

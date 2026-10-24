@@ -1,0 +1,83 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Document History | Justice AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="pages.css">
+</head>
+
+<body>
+  <div id="pageNavigation"></div>
+
+  <main class="page-main">
+    <span class="page-kicker">YOUR RESEARCH RECORD</span>
+
+    <h1 class="page-heading">
+      Document history<span style="color:#e58a0a">.</span>
+    </h1>
+
+    <p class="page-intro">
+      Review documents saved to your account. Open a previous report,
+      delete an unwanted analysis, or start a fresh analysis.
+    </p>
+
+    <section class="page-card" style="margin-top:25px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:18px">
+        <h2 style="margin:0">Saved documents</h2>
+
+        <a class="page-button" href="dashboard.html">
+          ＋ New analysis
+        </a>
+      </div>
+
+      <p
+        class="page-message"
+        id="historyMessage"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+      <div class="page-table-wrap">
+        <table class="page-table">
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="historyRows">
+            <tr>
+              <td colspan="4">Loading saved documents…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:16px;font-size:13px;color:#777">
+        Deleting a document permanently removes its saved report and attempts
+        to remove its stored uploaded file. This action cannot be undone.
+      </p>
+    </section>
+
+    <footer class="page-footer">
+      <span>JUSTICE AI · DOCUMENT HISTORY</span>
+      <span>Only access documents you are authorised to view.</span>
+    </footer>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="pages.js"></script>
+</body>
+</html>
+```

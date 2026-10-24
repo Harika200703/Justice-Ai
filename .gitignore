@@ -1,0 +1,44 @@
+@'
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Databases and confidential user data
+*.db
+*.sqlite
+*.sqlite3
+backend/uploads/
+uploads/
+private_uploads/
+
+# Node.js dependencies
+node_modules/
+**/node_modules/
+
+# Hardhat generated files
+blockchain/artifacts/
+blockchain/cache/
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+'@ | Set-Content -Encoding utf8 .gitignore
